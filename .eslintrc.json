@@ -47,6 +47,7 @@
     "react/jsx-pascal-case": "off",
     "react/react-in-jsx-scope": "off",
     "no-useless-escape": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
     "react/function-component-definition": [
       2,
       {
