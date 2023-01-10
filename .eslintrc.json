@@ -46,14 +46,31 @@
     "react/require-default-props": "off",
     "react/jsx-pascal-case": "off",
     "react/react-in-jsx-scope": "off",
-    "no-useless-escape": "off"
+    "no-useless-escape": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "index"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "newlines-between": "always"
+      }
+    ]
   },
   "settings": {
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
-      "typescript": "./tsconfig.json"
+      "typescript": {}
     }
   }
 }
