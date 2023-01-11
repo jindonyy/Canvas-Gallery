@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 type $ImageProps = {
@@ -7,7 +8,11 @@ type $ImageProps = {
   children?: ReactNode;
 };
 
-const $RowImageRoot = styled.div`
+type $TitleProps = {
+  ellipsis?: number;
+};
+
+const $RowItemRoot = styled.div`
   ${({ theme }) => theme.mixins.flexBox({ gap: '3rem' })}
   padding: 2rem;
 `;
@@ -24,17 +29,22 @@ const $Image = ({ src, alt, children, ...restProps }: $ImageProps) => (
   </$ImageWrap>
 );
 
-const $Author = styled.p`
+const $Link = styled(Link)`
+  display: block;
+`;
+
+const $Title = styled.h3<$TitleProps>`
   display: -webkit-box;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: ${({ ellipsis = 1 }) => ellipsis};
   -webkit-box-orient: vertical;
   overflow: hidden;
 `;
 
-const $RowImage = Object.assign($RowImageRoot, {
+const $RowItem = Object.assign($RowItemRoot, {
   Image: $Image,
-  Author: $Author
+  Link: $Link,
+  Title: $Title
 });
 
-export default $RowImage;
+export default $RowItem;

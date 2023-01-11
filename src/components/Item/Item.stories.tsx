@@ -1,33 +1,33 @@
 import { ComponentStory } from '@storybook/react';
 
-import { $ColumnImage, $RowImage } from '.';
+import { $ColumnItem, $RowItem } from '.';
 
 export default {
   title: 'common/Image',
-  component: $ColumnImage,
-  subComponent: $RowImage
+  component: $ColumnItem,
+  subComponent: $RowItem
 };
 
-export const Column: ComponentStory<typeof $ColumnImage> = () => (
+export const Column: ComponentStory<typeof $ColumnItem> = () => (
   <ul>
-    <$ColumnImage>
-      <$ColumnImage.Image
+    <$ColumnItem>
+      <$ColumnItem.Image
         src="https://picsum.photos/id/0/5000/3333"
         alt="위키오 3in1 거치대형 무선충전기 아이폰, 갤럭시, 스마트워치, 무선이어폰 동시충전 상품 사진"
       />
-      <$ColumnImage.Author>Alejandro Escamilla</$ColumnImage.Author>
-    </$ColumnImage>
+      <$ColumnItem.Title>Alejandro Escamilla</$ColumnItem.Title>
+    </$ColumnItem>
   </ul>
 );
 
-export const Row: ComponentStory<typeof $RowImage> = () => (
+export const Row: ComponentStory<typeof $RowItem> = () => (
   <ul>
-    <$RowImage>
-      <$RowImage.Image
+    <$RowItem>
+      <$RowItem.Image
         src="https://picsum.photos/id/0/5000/3333"
         alt="위키오 3in1 거치대형 무선충전기 아이폰, 갤럭시, 스마트워치, 무선이어폰 동시충전 상품 사진"
       />
-      <$RowImage.Author>Alejandro Escamilla</$RowImage.Author>
-    </$RowImage>
+      <$RowItem.Title>Alejandro Escamilla</$RowItem.Title>
+    </$RowItem>
   </ul>
 );
