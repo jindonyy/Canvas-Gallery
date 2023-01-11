@@ -16,14 +16,14 @@ module.exports = {
     config.resolve.modules = [path.resolve(__dirname, '..'), 'node_modules', 'styles'];
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@components': path.resolve(__dirname, '../src/components'),
-      '@pages': path.resolve(__dirname, '../src/pages'),
-      '@hooks': path.resolve(__dirname, '../src/hooks'),
-      '@styles': path.resolve(__dirname, '../src/styles'),
-      '@layout': path.resolve(__dirname, '../src/layout'),
-      '@apis': path.resolve(__dirname, '../src/apis'),
-      '@assets': path.resolve(__dirname, '../src/assets'),
-      '@utils': path.resolve(__dirname, '../src/utils')
+      components: path.resolve(__dirname, '../src/components'),
+      pages: path.resolve(__dirname, '../src/pages'),
+      hooks: path.resolve(__dirname, '../src/hooks'),
+      styles: path.resolve(__dirname, '../src/styles'),
+      layout: path.resolve(__dirname, '../src/layout'),
+      apis: path.resolve(__dirname, '../src/apis'),
+      assets: path.resolve(__dirname, '../src/assets'),
+      utils: path.resolve(__dirname, '../src/utils')
     };
     return config;
   }
