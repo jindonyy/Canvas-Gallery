@@ -5,6 +5,9 @@ const size = {
     tablet: '1024px',
     pc: '1200px',
     max: '1500px'
+  },
+  height: {
+    header: '10rem'
   }
 };
 
