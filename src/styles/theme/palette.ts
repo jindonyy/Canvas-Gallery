@@ -1,4 +1,4 @@
-import colors from '@styles/theme/colors';
+import colors from 'styles/theme/colors';
 
 const palette = {
   primary: colors.blue650,
