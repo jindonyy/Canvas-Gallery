@@ -18,6 +18,7 @@ const $ColumnItemRoot = styled.div``;
 const $ImageWrap = styled.div`
   position: relative;
   padding-top: 66.6%;
+  background: #ededed;
   overflow: hidden;
   & > img {
     ${({ theme }) => theme.mixins.position('absolute', { top: '50%', left: '50%' })}

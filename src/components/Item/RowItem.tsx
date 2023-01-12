@@ -18,8 +18,9 @@ const $RowItemRoot = styled.div`
 `;
 
 const $ImageWrap = styled.div`
-  width: 12rem;
   ${({ theme }) => theme.mixins.flexBox({ justify: 'center', align: 'center' })}
+  width: 12rem;
+  background: #ededed;
 `;
 
 const $Image = ({ src, alt, children, ...restProps }: $ImageProps) => (
