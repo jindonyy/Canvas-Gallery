@@ -14,6 +14,7 @@ const TitleFontSizes = {
 };
 
 const $Title = styled.h1<$TitleProps>`
+  margin-bottom: 2rem;
   font-size: ${({ variant = 'h1' }) => TitleFontSizes[variant]};
 `;
 

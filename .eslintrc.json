@@ -65,6 +65,7 @@
         "newlines-between": "always"
       }
     ],
+    "camelcase": ["error", { "properties": "never", "ignoreDestructuring": true }],
     "react/destructuring-assignment": ["off", { "ignoreClassFields": true }],
     "no-console": ["off", { "allow": ["error"] }]
   },
