@@ -1,5 +1,5 @@
-import PageLayout from 'components/PageLayout';
-import $Title from 'components/Title';
+import PageLayout from 'components/styled/PageLayout';
+import $Title from 'components/styled/Title';
 
 const HomePage = () => (
   <PageLayout>

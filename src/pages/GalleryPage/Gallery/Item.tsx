@@ -1,4 +1,4 @@
-import { $ColumnItem } from 'components/Item';
+import { $ColumnItem } from 'components/styled/Item';
 
 type ItemProps = {
   id: number;

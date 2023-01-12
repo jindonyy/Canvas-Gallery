@@ -5,8 +5,8 @@ import styled from 'styled-components';
 
 import { fetchGallery, ImageEntity } from 'api/gallery';
 import { galleryQueryKey } from 'api/queryKeys';
-import { $RowList } from 'components/List';
-import $LoadingSpinner from 'components/LoadingSpinner';
+import { $RowList } from 'components/styled/List';
+import $LoadingSpinner from 'components/styled/LoadingSpinner';
 import { MINUTE } from 'utils/unit';
 
 const GalleryLoading = styled.div`

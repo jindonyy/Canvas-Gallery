@@ -1,6 +1,6 @@
-import $ApiErrorBoundary from 'components/Error/ApiErrorBoundary';
-import PageLayout from 'components/PageLayout';
-import $Title from 'components/Title';
+import $ApiErrorBoundary from 'components/styled/Error/ApiErrorBoundary';
+import PageLayout from 'components/styled/PageLayout';
+import $Title from 'components/styled/Title';
 import Gallery from 'pages/GalleryPage/Gallery';
 
 const GalleryPage = () => (

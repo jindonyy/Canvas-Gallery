@@ -1,5 +1,5 @@
-import $Error from 'components/Error/$ErrorArea';
-import $PageLayout from 'components/PageLayout';
+import $Error from 'components/styled/Error/$ErrorArea';
+import $PageLayout from 'components/styled/PageLayout';
 
 const NotFound = () => (
   <$PageLayout>
