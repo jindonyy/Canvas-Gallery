@@ -67,7 +67,8 @@
     ],
     "camelcase": ["error", { "properties": "never", "ignoreDestructuring": true }],
     "react/destructuring-assignment": ["off", { "ignoreClassFields": true }],
-    "no-console": ["off", { "allow": ["error"] }]
+    "no-console": ["off", { "allow": ["error"] }],
+    "radix": ["error", "as-needed"]
   },
   "settings": {
     "import/parsers": {

@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import $ErrorArea from './$ErrorArea';
+import $ErrorArea from './ErrorArea';
 
 export default {
   title: 'common/ErrorArea',

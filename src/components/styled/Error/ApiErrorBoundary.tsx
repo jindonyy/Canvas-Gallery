@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react';
 
 import ApiErrorBoundary from 'components/primitives/Error/ApiErrorBoundary';
-import $ErrorArea from 'components/styled/Error/$ErrorArea';
+import $ErrorArea from 'components/styled/Error/ErrorArea';
 
 const ServerErrorFallback = () => (
   <$ErrorArea>

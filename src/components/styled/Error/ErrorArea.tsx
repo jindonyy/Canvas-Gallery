@@ -6,7 +6,7 @@ type $ErrorAreaProps = {
 
 const sizeStyles = {
   small: {
-    root: css`
+    area: css`
       height: 20vw;
       max-height: 25rem;
     `,
@@ -19,7 +19,7 @@ const sizeStyles = {
     `
   },
   medium: {
-    root: css`
+    area: css`
       height: 40vw;
       max-height: 40rem;
     `,
@@ -32,14 +32,14 @@ const sizeStyles = {
     `
   },
   large: {
-    root: css`
-      height: calc(100vh - ${({ theme }) => theme.size.height.header});
+    area: css`
+      height: 100vh;
     `,
     title: css`
       font-size: ${({ theme }) => theme.fonts.size.xxLarge};
     `,
     description: css`
-      margin-top: 1.4rem;
+      margin-top: 2rem;
       font-size: ${({ theme }) => theme.fonts.size.base};
     `
   }
@@ -49,7 +49,7 @@ const $ErrorAreaRoot = styled.div<$ErrorAreaProps>`
   position: relative;
   ${({ theme }) =>
     theme.mixins.flexBox({ justify: 'center', align: 'center', direction: 'column' })};
-  ${({ size = 'medium' }) => sizeStyles[size].root};
+  ${({ size = 'medium' }) => sizeStyles[size].area};
 `;
 
 const $Title = styled.h2<$ErrorAreaProps>`
