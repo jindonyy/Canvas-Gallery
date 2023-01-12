@@ -1,9 +1,29 @@
-import PageLayout from 'components/styled/PageLayout';
+import { lazy, Suspense } from 'react';
 
-const GalleryDetailPage = () => (
-  <PageLayout>
-    <img src="https://picsum.photos/id/0/5000/3333" alt="제품 사진" />
-  </PageLayout>
-);
+import $ApiErrorBoundary from 'components/styled/Error/ApiErrorBoundary';
+import $LoadingArea from 'components/styled/Loading/LoadingArea';
+import PageLayout from 'components/styled/PageLayout';
+import $Title from 'components/styled/Title';
+
+const LazyGalleryDetail = lazy(() => import('pages/GalleryDetailPage/GalleryDetail'));
+
+const GalleryDetailPage = () => {
+  return (
+    <PageLayout>
+      <$Title>Gallery Detail Page</$Title>
+      <$ApiErrorBoundary>
+        <Suspense
+          fallback={
+            <$LoadingArea>
+              <$LoadingArea.Loader />
+            </$LoadingArea>
+          }
+        >
+          <LazyGalleryDetail />
+        </Suspense>
+      </$ApiErrorBoundary>
+    </PageLayout>
+  );
+};
 
 export default GalleryDetailPage;
