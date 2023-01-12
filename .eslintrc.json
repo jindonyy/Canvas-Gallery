@@ -64,7 +64,9 @@
         },
         "newlines-between": "always"
       }
-    ]
+    ],
+    "react/destructuring-assignment": ["off", { "ignoreClassFields": true }],
+    "no-console": ["off", { "allow": ["error"] }]
   },
   "settings": {
     "import/parsers": {
