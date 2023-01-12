@@ -1,7 +1,7 @@
 import { $ColumnItem } from 'components/styled/Item';
 
 type ItemProps = {
-  id: number;
+  id: string;
   author: string;
   src: string;
 };

@@ -1,7 +1,7 @@
 import http from 'api/core';
 
 export type ImageEntity = {
-  id: number;
+  id: string;
   author: string;
   width: number;
   height: number;

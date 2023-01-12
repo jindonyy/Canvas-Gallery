@@ -1,13 +1,25 @@
+import { Suspense, lazy } from 'react';
+
 import $ApiErrorBoundary from 'components/styled/Error/ApiErrorBoundary';
+import $LoadingArea from 'components/styled/Loading/LoadingArea';
 import PageLayout from 'components/styled/PageLayout';
 import $Title from 'components/styled/Title';
-import Gallery from 'pages/GalleryPage/Gallery';
+
+const LazyGallery = lazy(() => import('pages/GalleryPage/Gallery'));
 
 const GalleryPage = () => (
   <PageLayout>
     <$Title>Gallery Page</$Title>
     <$ApiErrorBoundary>
-      <Gallery />
+      <Suspense
+        fallback={
+          <$LoadingArea>
+            <$LoadingArea.Loader />
+          </$LoadingArea>
+        }
+      >
+        <LazyGallery />
+      </Suspense>
     </$ApiErrorBoundary>
   </PageLayout>
 );
