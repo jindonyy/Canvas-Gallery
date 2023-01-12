@@ -6,11 +6,11 @@ const fonts = {
     medium: '1.8rem',
     large: '2rem',
     xLarge: '2.2rem',
-    xxLarge: '3.3rem'
+    xxLarge: '2.8rem'
   },
   weight: {
     regular: 400,
-    bold: 700
+    bold: 600
   },
   family: {
     base: "'Noto Sans KR', sans-serif"
