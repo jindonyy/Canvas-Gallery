@@ -1,12 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { CanvasHTMLAttributes, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-type CanvasImageProps = {
+interface CanvasImageProps extends CanvasHTMLAttributes<HTMLCanvasElement> {
   width: number;
   height: number;
   src: string;
   alt: string;
-};
+}
 
 const $Canvas = styled.canvas`
   width: 100%;
@@ -14,7 +14,7 @@ const $Canvas = styled.canvas`
   background: ${({ theme }) => theme.colors.grey100};
 `;
 
-const CanvasImage = ({ width, height, src, alt }: CanvasImageProps) => {
+const CanvasImage = ({ width, height, src, alt, ...restProps }: CanvasImageProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const createCanvas = () => {
@@ -43,9 +43,9 @@ const CanvasImage = ({ width, height, src, alt }: CanvasImageProps) => {
     image.onload = () => context.drawImage(image, 0, 0, width, height);
   };
 
-  useEffect(drawImage, [canvasRef]);
+  useEffect(drawImage, [src, canvasRef]);
 
-  return <$Canvas ref={canvasRef} />;
+  return <$Canvas ref={canvasRef} {...restProps} />;
 };
 
 export default CanvasImage;
