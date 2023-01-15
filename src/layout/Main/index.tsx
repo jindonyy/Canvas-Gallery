@@ -6,6 +6,7 @@ type MainProps = {
 };
 
 const $Main = styled.main`
+  position: relative;
   padding-top: ${({ theme }) => theme.size.height.header};
 `;
 

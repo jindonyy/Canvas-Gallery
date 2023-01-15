@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import Logo from 'components/styled/Logo';
+import $GNB from 'layout/Header/GNB';
 
 const $Header = styled.header`
   position: fixed;
@@ -12,18 +13,23 @@ const $Header = styled.header`
 `;
 
 const $Contents = styled.div`
+  ${({ theme }) => theme.mixins.flexBox({ align: 'center', gap: '4rem' })}
   max-width: ${({ theme }) => theme.size.media.max};
   min-width: ${({ theme }) => theme.size.media.min};
   height: ${({ theme }) => theme.size.height.header};
   margin: 0 auto;
   padding: 0 20px;
-  ${({ theme }) => theme.mixins.flexBox({ justify: 'space-between', align: 'center' })}
 `;
 
 const Header = () => (
   <$Header>
     <$Contents>
       <Logo />
+      <$GNB>
+        <$GNB.Item>
+          <$GNB.Link to="/gallery">Gallery</$GNB.Link>
+        </$GNB.Item>
+      </$GNB>
     </$Contents>
   </$Header>
 );
