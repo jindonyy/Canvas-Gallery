@@ -125,7 +125,8 @@ const GalleryDetail = () => {
     if (newImageIndex >= data.length) newImageIndex = data.length - 1;
     if (imageIndex === newImageIndex) return;
 
-    setImageIndex(newImageIndex); // 로딩 화면이 안보이므로 인덱스로 넘어간게 보이도록 (onload 후에 넣는게 나을까?)
+    // 이미지 로딩 전에는 그전 이미지가 보이므로 인덱스로 넘어간게 보이도록 (onload 후에 넣는게 나을까?)
+    setImageIndex(newImageIndex);
     drawImage();
   };
 
