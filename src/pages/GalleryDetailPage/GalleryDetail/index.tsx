@@ -24,7 +24,9 @@ const GalleryDetail = () => {
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mousePosition = { offset: { x: 0, y: 0 }, page: { x: 0, y: 0 } };
+  let mouseWhich: string | null = null;
   let canvasPosition = { x: 0, y: 0 };
+  let canvasRotate = 0;
 
   const createCanvas = () => {
     const canvas = canvasRef.current;
@@ -43,22 +45,12 @@ const GalleryDetail = () => {
     image.src = src;
 
     image.onload = () => {
-      const context = createCanvas(); // 이미지 로딩 전에는 그전 이미지가 보이도록 (로딩 화면을 보이는게 나을까?)
+      const context = createCanvas(); // 이미지 로딩 전에는 그전 이미지가 보이도록
       context?.drawImage(image, 0, 0);
     };
   };
 
-  const handleCanvasWheel = (event: WheelEvent) => {
-    let newImageIndex = imageIndex + (event.deltaY > 0 ? 1 : -1); // deltaY 값에 상관없이 한번만 이미지가 바뀌는게 나을까?
-    if (newImageIndex < 0) newImageIndex = 0;
-    if (newImageIndex >= data.length) newImageIndex = data.length - 1;
-    if (imageIndex === newImageIndex) return;
-
-    setImageIndex(newImageIndex); // 로딩 화면이 안보이므로 인덱스로 넘어간게 보이도록 (onload 후에 넣는게 나을까?)
-    drawImage();
-  };
-
-  const updateMouseOffset = (event: MouseEvent) => {
+  const updateMouseOffsetPointer = (event: MouseEvent) => {
     if (!canvasRef.current) return;
 
     const canvas = canvasRef.current;
@@ -70,23 +62,28 @@ const GalleryDetail = () => {
     };
   };
 
-  const handleCanvasMouseMove = (event: MouseEvent) => {
-    event.preventDefault();
+  const updateMousePagePointer = (event: MouseEvent | React.MouseEvent<HTMLCanvasElement>) => {
+    mousePosition.page = { x: event.pageX, y: event.pageY };
+  };
 
-    updateMouseOffset(event);
-    const zoom = 1 + (event.pageY - mousePosition.page.y) * 0.1;
+  const limitScaleRange = (context: CanvasRenderingContext2D) => {
+    const newZoom = 1;
+
+    const transform = context.getTransform();
+    context.setTransform({ ...transform, a: devicePixelRatio, d: devicePixelRatio });
+    canvasPosition = { x: 0, y: 0 };
+
+    return newZoom;
+  };
+
+  const zoomImage = (event: MouseEvent) => {
+    let zoom = 1 + (event.pageY - mousePosition.page.y) * 0.1;
 
     const context = canvasRef.current?.getContext('2d');
     if (!context) return;
+
     const { a: scaleX } = context.getTransform();
-    // if (scaleX * zoom <= devicePixelRatio) {
-    //   context.translate(0, 0);
-    //   context.scale(1, 1);
-    //   const storedTransform = context.getTransform();
-    //   context.setTransform(storedTransform);
-    //   context.drawImage(image, 0, 0);
-    //   return;
-    // }
+    if (scaleX * zoom < devicePixelRatio) zoom = limitScaleRange(context);
     const newCanvasPosition = {
       x: canvasPosition.x + (mousePosition.offset.x / scaleX) * (1 - 1 / zoom),
       y: canvasPosition.y + (mousePosition.offset.y / scaleX) * (1 - 1 / zoom)
@@ -95,28 +92,69 @@ const GalleryDetail = () => {
     context.translate(canvasPosition.x, canvasPosition.y);
     context.scale(zoom, zoom);
     context.translate(-newCanvasPosition.x, -newCanvasPosition.y);
-    canvasPosition = newCanvasPosition;
-    mousePosition.page = { x: event.pageX, y: event.pageY };
     const transform = context.getTransform();
     context.setTransform(transform);
     context.drawImage(image, 0, 0);
+    canvasPosition = newCanvasPosition;
   };
 
-  const handleCanvasMouseUp = () => {
-    document.removeEventListener('mousemove', handleCanvasMouseMove);
-    document.removeEventListener('mouseup', handleCanvasMouseUp);
+  const rotateImage = (event: MouseEvent) => {
+    canvasRotate += event.pageY >= mousePosition.page.y ? 1 : -1;
+
+    const canvas = canvasRef.current;
+    const context = createCanvas();
+    if (!canvas || !context) return;
+
+    const { a: scaleX } = context.getTransform();
+    context.translate(
+      width / 2 / (scaleX / devicePixelRatio),
+      height / 2 / (scaleX / devicePixelRatio)
+    );
+    context.rotate((canvasRotate * Math.PI) / 180);
+    context.translate(
+      -width / 2 / (scaleX / devicePixelRatio),
+      -height / 2 / (scaleX / devicePixelRatio)
+    );
+    context.drawImage(image, 0, 0);
+  };
+
+  // TODO: 먼저 load되는 이미지가 보여지고 있다.
+  const handleCanvasWheel = (event: WheelEvent) => {
+    let newImageIndex = imageIndex + (event.deltaY > 0 ? 1 : -1);
+    if (newImageIndex < 0) newImageIndex = 0;
+    if (newImageIndex >= data.length) newImageIndex = data.length - 1;
+    if (imageIndex === newImageIndex) return;
+
+    setImageIndex(newImageIndex); // 로딩 화면이 안보이므로 인덱스로 넘어간게 보이도록 (onload 후에 넣는게 나을까?)
+    drawImage();
   };
 
   const handleCanvasMouseDown = (event: React.MouseEvent<HTMLCanvasElement>) => {
-    if (event.nativeEvent.button !== 0) return;
+    updateMousePagePointer(event);
 
-    mousePosition.page = { x: event.pageX, y: event.pageY };
+    if (event.button === 0) mouseWhich = 'left';
+    else if (event.button === 2) mouseWhich = 'right';
 
-    document.addEventListener('mousemove', handleCanvasMouseMove);
-    document.addEventListener('mouseup', handleCanvasMouseUp);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
   };
 
-  const handleCanvasContextMenu = (event: React.MouseEvent) => {
+  const handleMouseMove = (event: MouseEvent) => {
+    event.preventDefault();
+
+    updateMouseOffsetPointer(event);
+    if (mouseWhich === 'left') zoomImage(event);
+    else if (mouseWhich === 'right') rotateImage(event);
+    updateMousePagePointer(event);
+  };
+
+  const handleMouseUp = () => {
+    mouseWhich = null;
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp);
+  };
+
+  const handleCanvasContextMenu = (event: React.MouseEvent<HTMLCanvasElement>) => {
     event.preventDefault();
   };
 
