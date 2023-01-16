@@ -1,46 +1,139 @@
-# Getting Started with Create React App
+# 🩻 Hueron
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 이미지 갤러리를 구현한 휴런 과제 프로젝트 입니다.
+- 작업 기간: 2023.01.10 ~ 2023.01.16
 
-## Available Scripts
+<br>
 
-In the project directory, you can run:
+## 🛠 Tools
 
-### `npm start`
+### react
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- JSX 문법을 사용하여 HTML과 JavaScript를 함께 사용할 수 있다.
+- 컴포넌트로 상태관리를 할 수 있어 복잡한 UI도 효과적으로 구성할 수 있다.
+- 가상 DOM을 사용하여 변경된 부분만 브라우저의 DOM에 업데이트하여 효율적이다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### styled-components
 
-### `npm test`
+- 컴포넌트의 props를 참조할 수 있으며, props의 값에 따라 스타일을 다르게 코딩 할 수 있다.
+- 자유로운 CSS 커스텀 컴포넌트를 만들 수 있다.
+- Scss라이브러리 설치 없이 Scss 문법을 사용할 수 있다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### react-query
 
-### `npm run build`
+- Server state, Client state를 분리할 수 있다.
+- fetch 옵션을 원하는대로 설정하여 네트워크 통신을 최소한으로 아끼고 메모리 성능이 향상된다.
+- 데이터 캐싱이 가능하여 사용자가 어플리케이션이 즉각 반응하고 더 빠르다고 느끼게 성능이 개선된다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### storybook
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- UI 컴포넌트를 독립적인 환경에서 개발을 돕는 오픈소스 툴이다.
+- React, Vue, Angular에서도 지원하며 다양한 에드온(후킹 : 정상적인 동작을 가로채는 동작 )을 기반으로 UI 컴포넌트를 쉽게 테스트 할 수 있도록 돕는다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
 
-### `npm run eject`
+## 📂 Directory
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+📂 src
+├── App.tsx
+├── 📂 api
+│   ├── core.ts
+│   └── gallery.ts
+├── 📂 components
+│   ├── 📂 primitives
+│   │   └── 📂 Error
+│   │       └── ApiErrorBoundary.tsx
+│   └── 📂 styled
+│       ├── 📂 Error
+│       │   ├── ApiErrorBoundary.tsx
+│       │   ├── Error.stories.tsx
+│       │   └── ErrorArea.tsx
+│       ├── 📂 Item
+│       │   ├── ColumnItem.tsx
+│       │   ├── Item.stories.tsx
+│       │   ├── RowItem.tsx
+│       │   └── index.tsx
+│       ├── 📂 List
+│       │   ├── ColumnList.tsx
+│       │   ├── List.stories.tsx
+│       │   ├── RowList.tsx
+│       │   └── index.tsx
+│       ├── 📂 Loading
+│       │   ├── Loading.stories.tsx
+│       │   ├── LoadingArea.tsx
+│       │   └── LoadingSpinner.tsx
+│       ├── 📂 Logo
+│       │   ├── Logo.stories.tsx
+│       │   └── index.tsx
+│       ├── 📂 PageLayout
+│       │   ├── PageLayout.stories.tsx
+│       │   └── index.tsx
+│       └── 📂 Title
+│           ├── Title.stories.tsx
+│           └── index.tsx
+├── 📂 hooks
+│   └── useThrottle.ts
+├── index.tsx
+├── 📂 layout
+│   ├── 📂 Header
+│   │   ├── GNB.tsx
+│   │   └── index.tsx
+│   ├── 📂 Main
+│   │   └── index.tsx
+│   └── index.tsx
+├── 📂 pages
+│   ├── 📂 GalleryDetailPage
+│   │   ├── 📂 GalleryDetail
+│   │   │   └── index.tsx
+│   │   └── index.tsx
+│   ├── 📂 GalleryPage
+│   │   ├── 📂 Gallery
+│   │   │   ├── Item.tsx
+│   │   │   └── index.tsx
+│   │   └── index.tsx
+│   ├── 📂 HomePage
+│   │   └── index.tsx
+│   ├── 📂 NotFoundPage
+│   │   └── index.tsx
+│   └── Router.tsx
+├── 📂 queries
+│   └── useFetchGallery.ts
+├── styled.d.ts
+├── 📂 styles
+│   ├── GlobalStyle.tsx
+│   ├── commonSX.ts
+│   ├── reset.ts
+│   └── theme
+│       ├── colors.ts
+│       ├── fonts.ts
+│       ├── index.ts
+│       ├── mixins.ts
+│       ├── palette.ts
+│       ├── size.ts
+│       └── zIndex.ts
+└── 📂 utils
+    └── unit.ts
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🕹 실행 방법
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. 터미널에 `npm install`을 입력하여 node modules를 설치한다.
 
-## Learn More
+```
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. 터미널에 `npm run start`를 입력한다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npm run start
+```
+
+3. [http://localhost:3000](http://localhost:3000) 에 접속한다.
+
+- home page - [http://localhost:3000](http://localhost:3000)
+- gallery page - [http://localhost:3000/gallery](http://localhost:3000/gallery)
+- gallery detail page - [http://localhost:3000/gallery](http://localhost:3000/gallery)/:imageId
