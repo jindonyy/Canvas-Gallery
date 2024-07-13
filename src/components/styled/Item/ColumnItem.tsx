@@ -52,7 +52,7 @@ const SizeStyle = {
 
 const $Title = styled.h3<$TitleProps>`
   display: -webkit-box;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   text-align: center;
   text-overflow: ellipsis;
   -webkit-line-clamp: ${({ ellipsis = 1 }) => ellipsis};

@@ -8,6 +8,8 @@ type MainProps = {
 const $Main = styled.main`
   position: relative;
   padding-top: ${({ theme }) => theme.size.height.header};
+  max-width: ${({ theme }) => theme.size.width.layout};
+  margin: 0 auto;
 `;
 
 const Main = ({ children }: MainProps) => <$Main>{children}</$Main>;

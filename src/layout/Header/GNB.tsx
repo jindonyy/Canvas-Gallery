@@ -13,7 +13,7 @@ const $Link = styled(Link)`
   font-size: ${({ theme }) => theme.fonts.size.medium};
   font-weight: ${({ theme }) => theme.fonts.weight.bold};
   &:hover {
-    color: ${({ theme }) => theme.palette.primary};
+    color: ${({ theme }) => theme.palette.neutral_dark};
   }
 `;
 

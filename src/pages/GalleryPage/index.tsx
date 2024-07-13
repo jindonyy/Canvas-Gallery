@@ -9,7 +9,7 @@ const LazyGallery = lazy(() => import('pages/GalleryPage/Gallery'));
 
 const GalleryPage = () => (
   <PageLayout>
-    <$Title>Gallery Page</$Title>
+    <$Title variant="h2">Gallery Page</$Title>
     <$ApiErrorBoundary>
       <Suspense
         fallback={

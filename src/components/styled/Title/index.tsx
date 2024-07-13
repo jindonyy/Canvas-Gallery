@@ -21,7 +21,9 @@ const $TitleRoot = styled.h1<$TitleProps>`
 `;
 
 const $Title = ({ variant, children }: $TitleProps) => (
-  <$TitleRoot as={variant}>{children}</$TitleRoot>
+  <$TitleRoot variant={variant} as={variant}>
+    {children}
+  </$TitleRoot>
 );
 
 export default $Title;

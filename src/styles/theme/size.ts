@@ -6,6 +6,9 @@ const size = {
     pc: '1200px',
     max: '1500px'
   },
+  width: {
+    layout: '1200px'
+  },
   height: {
     header: '10rem'
   }

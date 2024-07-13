@@ -1,23 +1,33 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 type $LogoProps = {
-  size?: keyof typeof logoSizes;
+  variant?: 'logo' | 'text';
+  size?: 'sm' | 'md' | 'lg';
 };
 
 const logoSizes = {
-  medium: '18rem'
+  logo: {
+    sm: '60px',
+    md: '120px',
+    lg: '240px'
+  },
+  text: {
+    sm: '184px',
+    md: '368px',
+    lg: '736px'
+  }
 };
 
-const $Link = styled(Link)<$LogoProps>`
+const $Image = styled.img<$LogoProps>`
   display: block;
-  width: ${({ size = 'medium' }) => logoSizes[size]};
+  width: ${({ variant = 'logo', size = 'md' }) => logoSizes[variant][size]};
 `;
 
-const $Logo = (props: $LogoProps) => (
-  <$Link to="/" {...props}>
-    <img src="https://iheuron.com/html/_img/comm/logo.png" alt="Heuron 로고" />
-  </$Link>
-);
+const $Logo = (props: $LogoProps) => {
+  const { variant = 'logo', ...rest } = props;
+  const src = `/assets/images/${variant === 'logo' ? 'logo.png' : 'logo_text.png'}`;
+
+  return <$Image src={src} variant={variant} {...rest} />;
+};
 
 export default $Logo;

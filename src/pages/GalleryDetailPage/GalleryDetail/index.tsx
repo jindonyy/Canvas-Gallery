@@ -191,7 +191,7 @@ const $GalleryItem = styled($ColumnItem)`
 `;
 
 const $ItemIndex = styled.p`
-  margin: -1rem 0 1rem;
+  margin-bottom: 0.5rem;
   text-align: right;
 `;
 
